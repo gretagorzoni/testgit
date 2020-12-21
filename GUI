@@ -1,0 +1,61 @@
+from guizero import *
+
+# Data:11-07-2015    Da:Franco    A:Marco      Testo:Ciao!
+# Gui con textbox di input e output
+from guizero import *
+
+def p1():
+    t2.value = 'Punto 1\n'+t1.value
+def p2():
+    t2.value = 'Punto 2\n'+t1.value
+    
+def run():
+    p1()
+    app.after(2000, p2) # per far eseguire dopo 2 sec
+    
+app = App(title='Messaggi', layout='grid', width=800, height=500)
+Text(app, text='Input ', grid=[0,0])
+t1 = TextBox(app, grid=[0,1], multiline=True, height=10, width=70)
+
+Text(app, grid=[0,2], text='output')
+t2 = TextBox(app, grid=[0,3], multiline=True, height=10, width=70)
+b = PushButton(app, text='input', grid=[0,4], command=run)
+
+app.display()
+
+--------------------------------------------------------------------
+# Genera input
+def generainput():
+    v = int(t1.value)
+    global listatext
+    listatext = []
+    for x in range(v):
+        t = TextBox(app, grid=[1+x, 0], width=50, height=20)
+        listatext.append(t)
+    return listatext
+
+--------------------------------------------------------------------
+# Funzione lettura
+m = []
+def lettura():
+    for l in t1.value.strip().splitlines():
+        l = l.split(' ')
+        m.append(str(l))
+    return m
+    
+def p1():
+    lettura()
+    t2.value = 'Punto 1\n'
+    t2.value += str(m) + '\n'
+    
+app = App(layout='grid')
+t1 = TextBox(app, grid=[0,0])
+b1 = PushButton(app, text='1', grid=[1,0], command=p1)
+
+
+
+
+
+
+
+
