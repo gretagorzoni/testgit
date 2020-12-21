@@ -1,0 +1,79 @@
+# Dati.txt
+# ------ Nome:A
+# ------ Valori:1,2,3,4,5
+# Dizionario con lista di valori
+dati = {}
+with open('dati.txt') as f:
+    for l in f:
+        l = l.strip()
+        if len(l) > 0:
+            #print(l)
+            if l.startswith('Nome'):
+                gruppo = l.split(':')[1]
+            else:
+                v = [int(x) for x in l.split(':')[1].split(',')]
+                if gruppo in dati:
+                    dati[gruppo].append(v)
+                else:
+                    dati[gruppo] = [v]
+for k, v in dati.items():
+    print(k, '-->', v)
+    
+# Dati.txt
+# ------ Via Emilia-->Via Amendola
+# ------ Via Amendola-->Via Botti
+# Lista splittata
+vie = []
+with open('dati.txt') as f:
+    for l in f:
+        l = l.strip()#.splitlines()
+        #print(l)
+        if len(l) > 0:
+            s = l.split('-->')
+        vie.append(s)
+        #print(s)
+for s in vie:
+    print(s)
+    
+# Dati.txt
+# ------ Data:11-07-2020 Da:Marco A:Franco Testo:ciao Bene
+# ------ Data:12-07-2020 Da:Franco A:Marco Testo:Come stai?
+# Lista di dizionari
+msg = []
+with open('dati.txt') as f:
+for l in f:
+if  len(l.strip()) > 0:
+  s = l.strip().split(' ')
+      data = s[0]
+      da = s[1]
+      a = s[2]
+      testo = s[3]
+      for i in range(4, len(s)):
+          testo += ' '+s[i]
+      print{'data':data.split(':')[1], 'da':da.split(':')[1], 'a':a.split(':')[1], 'testo':testo.split(':')[1]}
+for m in msg:
+  print(m)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
