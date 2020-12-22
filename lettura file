@@ -19,6 +19,7 @@ with open('dati.txt') as f:
 for k, v in dati.items():
     print(k, '-->', v)
     
+---------------------------------------------------------------
 # Dati.txt
 # ------ Via Emilia-->Via Amendola
 # ------ Via Amendola-->Via Botti
@@ -35,6 +36,7 @@ with open('dati.txt') as f:
 for s in vie:
     print(s)
     
+---------------------------------------------------------------
 # Dati.txt
 # ------ Data:11-07-2020 Da:Marco A:Franco Testo:ciao Bene
 # ------ Data:12-07-2020 Da:Franco A:Marco Testo:Come stai?
@@ -54,10 +56,38 @@ if  len(l.strip()) > 0:
 for m in msg:
   print(m)
 
+---------------------------------------------------------------
+# Dati.txt
+# ------ Persona: Marco Mamei
+# ------ Attività: corsa,55/100
 
+# ------ Persona: Stefano Mariani
+# ------ Attività: nuoto,40/120
+# Dizionario che contiene una lista di dizionari
+dati = {}
 
-
-
+with open('dati1.txt', encoding='utf-8') as f:
+    for l in f:
+        l = (l.strip())
+        if len(l) == 0: #togliere le linee vuote
+            continue
+        if l.startswith('Persona:'):
+            nome = l.split(':')[1].strip()# per tirare fuori il nome della persona
+            # nome = l[len('Persona: '):]
+            #print(nome)
+            #controllo se marco mamei è già presente nel dizionario
+            if nome in dati:
+                lista_att = dati[nome]
+            else:
+                lista_att = []
+                dati[nome] = lista_att
+        if l.startswith('Attività:'):
+            att, punt = l.split(':')[1].strip().split(',')
+            n, d = punt.split('/')
+            punt = int(n) / int(d)
+            #print(att, punt)
+            lista_att.append({'att': att, 'punt':punt})
+print(dati)
 
 
 
