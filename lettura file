@@ -89,8 +89,52 @@ with open('dati1.txt', encoding='utf-8') as f:
             lista_att.append({'att': att, 'punt':punt})
 print(dati)
 
+---------------------------------------------------------------
+# Dati.txt
+# ------ Torta di Mele
+# ------ -Mele,4
+# ------ -Zucchero,5
+# ------ -Farina,6
+# ------ -Uova,2
 
+# ------ Spaghetti in Bianco
+# ------ -Spaghetti,100
 
+# ------ Pasta
+# ------ -Sale,2
+# ------ -Acqua,1000
+# {Torta di mele: [{mele:4}, {uova,6}], Spaghetti: [{spaghetti:100}, {acqua:1000}]}
+
+with open('dati.txt') as f:
+    f = f.readlines()
+
+ricetta = {}
+for l in f:
+    l = l.strip()
+    if len(l) > 0:
+        if '-' not in l:
+            key = l
+            ricetta[key] = []
+
+        else:
+            s = l.replace('-', '')
+            ingr = {}
+            ingr['Ingrediente'] = s.split(',')[0]
+            ingr['Quantita'] = s.split(',')[1]
+            ricetta[key].append(ingr)
+print(ricetta)
+
+---------------------------------------------------------------
+# Per leggere tutti i file senza linee vuote
+with open('dati.txt') as f:
+    l = f.read().splitlines()
+
+for i in range(int(len(l))):
+    if '' in l:
+        for x in l:
+            if len(x) == 0:
+                l.remove(x)
+print(l)
 
 
 
